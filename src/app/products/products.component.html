@@ -1,0 +1,128 @@
+<div class="container">
+    <!-- <div class="container">
+        <input type="button" class="btn btn-success float-end m-2" [class]="IsProductsListShown?'btn-dark':'btn-success'" [value]="IsProductsListShown?'Hide Products':'Show Products'" (click)="ToggleProductsList()">
+    </div> -->
+    <h1 style="display:inline-block; margin-left: 40px; margin-top: 40px;">{{StoreName |uppercase}}</h1>
+    <img id="logo" [src]="StoreLogo" style="width: 60px; margin-top:-20px; margin-left: -5px;">
+
+    <p class="display-6" style="margin-left: 40px;" *ngIf="HasDiscount"> We offer an explicit discount of: <span
+            id="offer"
+            style="color: #fff; font-weight: 500; background-color: #198754; border-radius: 8px; padding: 0px 2px;">{{Discount
+            |percent}}</span></p>
+    <p class="display-6" style="margin-left: 40px;" *ngIf="!HasDiscount"> </p>
+    
+    <!-- <button class="btn btn-success mx-2 float-end" (click)="this.router.navigate(['withOffers'],{relativeTo:this.activatedRoute})">Products with offers</button>
+    <button class="btn btn-success float-end" (click)="this.router.navigate(['withoutOffers'],{relativeTo:this.activatedRoute})">Products without offers</button> -->
+
+    <!-- <button id="btnJQ" (click)="TestJQ()" type="button" class="btn btn-outline-success" style="margin-left: 40px;">Feeling
+            Lucky?</button> -->
+
+            <router-outlet></router-outlet>
+
+    <br>
+    <br>
+
+    <form class="d-flex float-end" role="search">
+        <input class="form-control-sm me-2 " type="search" placeholder="Search" aria-label="Search"
+            id="in_product_search" style="border: 1px solid #dfdfdf;outline-color: #dfdfdf;">
+        <button class="btn btn-outline-success mx-2" type="button" (click)="FilterProducts('Name')"><i
+                class="fas fa-magnifying-glass"></i></button>
+        <button class="btn btn-outline-dark" type="button" (click)="ResetFilter()" id="btn_reset_filter"><i
+                class="fas fa-xmark"></i></button>
+    </form>
+
+    <select class="form-select-sm float-start p-2" style="border-color: #dfdfdf;outline:none">
+        <option *ngFor="let cat of Categories;">{{cat}}</option>
+    </select>
+
+    <!-- <input type="button" class="btn mx-2" (click)="IsProductsListShown =!IsProductsListShown"> -->
+
+    <br>
+    <br>
+    <br>
+
+    <!-- TODO Horizontal scroll problem from a col-sm-3 we just used a work around-->
+
+    <!--#region Cards  -->
+    <div class="row">
+        <div class="col-sm-3 my-1" *ngFor="let Product of ProductList">
+            <div class="card">
+                <img class="card-img-top" [src]="Product.Img" [alt]="Product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">{{Product.Name}}</h5>
+                    <p class="card-text">{{Product.Price |currency : 'EGP'}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Description</li>
+                </ul>
+                <div class="card-body" style="text-align: right;">
+                    <a href="#" class="btn btn-outline-success">+ Wishlist</a>
+                    <button class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-whatever="@mdo">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{errorMsg}}
+
+    <!--#endregion  -->
+</div>
+
+<!--#region Modal To finish Deal  -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content" [class]="!IsConfirmContact?'d-block':'d-none'">
+            <div class="modal-header">
+                <h5 id="exampleModalLabel">Out of Stock</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Unfortunately, This product is out of stock.
+                            Please, Leave a contact info to call you back when it's available.</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="ClientName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-number" class="col-form-label">Mobile Number:</label>
+                        <input type="text" class="form-control" id="recipient-number">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="recipient-email">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="IsConfirmContact=!IsConfirmContact;">Call me
+                    back</button>
+            </div>
+        </div>
+
+
+
+        <div class="modal-content" [class]="IsConfirmContact?'d-block':'d-none'">
+            <div class="modal-body text-center p-4">
+                <form>
+                    <i class="fas fa-check rounded-circle bg-success text-white p-3 text-center"
+                        style="width: 70px;height:70px;"></i>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label display-1" *ngIf="IsConfirmContact">Done. We
+                            will call you back as soon as it get available, Mr {{ClientName}}</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="IsConfirmContact=false;">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--#endregion  -->

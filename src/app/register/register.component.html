@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100 row">
+    <div class="card container m-4" style="width: 28rem; background-color: transparent; outline: none;border: none;">
+        <div class="card-body m-4 shadow p-3 mb-5 bg-body rounded">
+
+            <form #userForm="ngForm" class="container my-4" id="form" novalidate (ngSubmit)="OnSubmit(userForm)">
+                <h2>Template Driven</h2><br>
+                <div class="mb-3">
+                    <label for="in_username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="in_username" required aria-describedby="emailHelp"
+                        required #username="ngModel" ngModel [(ngModel)]="user.name" name="name" pattern="^[A-Za-z]+$">
+                    <div *ngIf="username.errors&&username.touched">
+                        <small class="text-danger" *ngIf="username.errors['required']">Username can't be left
+                            blank</small>
+                        <small class="text-danger" *ngIf="username.errors['pattern']">Username can't have numbers in
+                            it</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="in_email" aria-describedby="emailHelp"
+                        [(ngModel)]="user.email" ngModel #email="ngModel" name="email" pattern="^\w+@\w+(.com)+$"
+                        required>
+                    <div *ngIf="email.errors&&email.touched">
+                        <small class="text-danger" *ngIf="email.errors['required']">Email can't be left blank</small>
+                        <small class="text-danger" *ngIf="email.errors['pattern']">Email is not in the right
+                            format</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="in_password" [(ngModel)]="user.password" ngModel
+                        #password="ngModel" required name="password">
+                    <small class="text-danger" *ngIf="password.invalid&&password.touched">Password can't be
+                        blank</small>
+                </div>
+                <div class="mb-3">
+                    <label for="in_confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="in_confirm_password" ngModel #conpassword="ngModel"
+                        required name="conpassword">
+                    <small class="text-danger" *ngIf="conpassword.invalid&&conpassword.touched">Password can't be
+                        blank</small>
+                    <small class="text-danger"
+                        *ngIf="conpassword.valid&&conpassword.touched&&conpassword.value!=password.value">Password
+                        doesn't match</small>
+                </div>
+                <div class="mb-3">
+                    <label for="in_confirm_password" class="form-label">Where did you hear about us</label>
+                    <select class="form-select" aria-label="Default select example"
+                        [(ngModel)]="user.whereYouHearAboutUs" name="whereYouHearAboutUs"
+                        #whereYouHearAboutUs="ngModel">
+                        <option>Facebook</option>
+                        <option>Twitter</option>
+                        <option>Google</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success mt-4 float-end"
+                    [disabled]="userForm.form.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="card container m-4" style="width: 28rem; background-color: transparent; outline: none;border: none;">
+        <div class="card-body m-4 shadow p-3 mb-5 bg-body rounded">
+
+            <form [formGroup]="registerForm" class="container my-4 col-sm" id="form" novalidate
+                (ngSubmit)="OnSubmit(userForm)">
+                <h2>Reactive</h2><br>
+                <div class="mb-3">
+                    <label for="in_username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="in_username" aria-describedby="emailHelp"
+                        formControlName="userName" name="userName">
+                    <div *ngIf="userName?.errors && userName?.touched">
+                        <small class="text-danger" *ngIf="userName?.errors?.['required']">Username can not be
+                            blank</small>
+                        <small class="text-danger" *ngIf="userName?.errors?.['forbiddenName']">Username can not be
+                            {{userName?.errors?.['forbiddenName']?.['value']}}</small>
+                        <small class="text-danger" *ngIf="userName?.errors?.['minlength']">Username must be at least 3 chars </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="in_email" aria-describedby="emailHelp"
+                        formControlName="Email" name="Email" pattern="^\w+@\w+(.com)+$">
+                    <div *ngIf="Email?.errors&&Email?.touched">
+                        <small class="text-danger" *ngIf="Email?.errors?.['required']">Email can't be left blank</small>
+                        <small class="text-danger" *ngIf="Email?.errors?.['pattern']">Email is not in the right
+                            format</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="in_password" formControlName="Password" required
+                        name="Password">
+                    <small class="text-danger" *ngIf="Password?.errors?.['required'] && Password?.touched">Password can
+                        not be blank</small>
+                </div>
+                <div class="mb-3">
+                    <label for="in_confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="in_confirm_password" name="conpassword"
+                        formControlName="ConfirmPassword" required>
+
+                    <small class="text-danger" *ngIf="ConfirmPassword?.errors?.['required'] && ConfirmPassword?.touched">
+                        Password can not be blank </small>
+
+                    <small class="text-danger" *ngIf="registerForm?.errors?.['misMatch']"> Password doesn't
+                        match</small>
+
+                </div>
+                <div class="mb-3">
+                    <label for="select_whereYouHearAboutUs" class="form-label">Where did you hear about us</label>
+                    <select class="form-select" aria-label="Default select example" id="select_whereYouHearAboutUs"
+                        formControlName="whereDidYouHearAboutUs" name="whereDidYouHearAboutUs">
+                        <option>Facebook</option>
+                        <option>Twitter</option>
+                        <option>Google</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success mt-4 float-end"
+                    [disabled]="!registerForm?.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

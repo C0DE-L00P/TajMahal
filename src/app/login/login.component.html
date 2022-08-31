@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="card container" style="width: 28rem; background-color: transparent; outline: none;border: none;">
+        <div class="card-body m-4 shadow p-3 mb-5 bg-body rounded" >
+
+            <form #userForm="ngForm" class="container my-4" novalidate (ngSubmit)="OnSubmit(userForm)">
+                <h2>Template Driven</h2><br>
+                <div class="mb-3">
+                    <label for="in_email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" [class.is-invalid]="email.invalid&&email.touched" id="in_email" required aria-describedby="emailHelp" [(ngModel)]="user.email" name="email" ngModel #email="ngModel" pattern="^\w+@\w+(.com)+$">
+                    <div *ngIf="email.errors&&email.touched">
+                        <small class="text-danger" *ngIf="email.errors['required']">Email can't be blank</small>
+                        <small class="text-danger" *ngIf="email.errors['pattern']">Email is not in the right format</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_password" class="form-label">Password</label>
+                    <input type="password" class="form-control" [class.is-invalid]="password.invalid&&password.touched" id="in_password" [(ngModel)]="user.password" #password="ngModel" name="password" ngModel required>
+                    <small class="text-danger" *ngIf="password.invalid && password.touched">Password can't be blank</small>
+                </div>
+                <button type="submit" class="btn btn-success my-4 float-end" [disabled]="userForm.form.invalid">Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="card container" style="width: 28rem; background-color: transparent; outline: none;border: none;">
+        <div class="card-body m-4 shadow p-3 mb-5 bg-body rounded" >
+
+            <form [formGroup]="loginForm" class="container my-4" novalidate (ngSubmit)="OnSubmit(userForm)">
+                <h2>Reactive</h2><br>
+                <div class="mb-3">
+                    <label for="in_email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" [class.is-invalid]="Email?.invalid&&Email?.touched" id="in_email" required name="Email" pattern="^\w+@\w+(.com)+$"  formControlName="Email">
+                    <div *ngIf="Email?.errors&&Email?.touched">
+                        <small class="text-danger" *ngIf="Email?.errors?.['required']">Email can't be blank</small>
+                        <small class="text-danger" *ngIf="Email?.errors?.['pattern']">Email is not in the right format</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="in_password" class="form-label">Password</label>
+                    <input type="password" class="form-control" [class.is-invalid]="Password?.invalid&&Password?.touched" id="in_password"  name="Password" required  formControlName="Password">
+                    <small class="text-danger" *ngIf="Password?.invalid && Password?.touched">Password can't be blank</small>
+                </div>
+                <button type="submit" class="btn btn-success my-4 float-end" [disabled]="!loginForm?.valid">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>

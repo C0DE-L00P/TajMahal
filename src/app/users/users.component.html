@@ -1,0 +1,15 @@
+<!-- user card -->
+
+<div class="d-flex w-100 flex-wrap container mt-3">
+  
+<div class="card m-2 col-3 " *ngFor="let user of users">
+  <div class="card-body text-center shadow-sm">
+    <img [src]="'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20('+user.id+').webp'" class="rounded-circle mb-3" style="width: 160px;" alt="avatar">
+    <h5 class="card-title">{{user.name}}</h5>
+    <p class="card-text">{{user.username}}</p>
+    <p class="card-text">{{user.email}}</p>
+    <!-- <a href="#" class="btn btn-primary"></a> -->
+  </div>
+</div>
+
+</div>

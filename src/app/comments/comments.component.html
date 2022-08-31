@@ -1,0 +1,9 @@
+
+<div class="card card-body" style="background-color: #f8f9fa;">
+<button class="btn btn-dark col-2 m-2" (click)="GoBackToPost(postID)"><i class="fas fa-angle-left text-success mx-2"></i>Back</button>
+
+    <div class="card-body" *ngFor="let comment of comments">
+        <h5 class="card-title fs-6 text-success">{{comment.email}}</h5>
+        <p class="card-text fs-6">{{comment.body}}</p>
+    </div>
+</div>

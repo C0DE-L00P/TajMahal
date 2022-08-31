@@ -1,0 +1,30 @@
+<!-- post card -->
+
+
+<div class="card m-2 w-90 d-flex" *ngFor="let post of posts">
+  <div class=" d-inline-flex"></div>
+
+  <div class="card-body">
+    <i class="fas fa-bookmark text-success float-end mx-4" style="font-size: 60px; margin-top: -20px;" *ngIf="postIDLastVisited==post.id"></i>
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.body}}</p>
+    <!-- <a href="#" class="btn btn-primary"></a> -->
+  </div>
+
+
+  <p>
+    <button class="btn btn-success float-end mx-2" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseExample'+post.id"
+      aria-expanded="false" aria-controls="collapseExample" (click)="ShowComments(post.id)">
+      Comments
+    </button>
+  </p>
+  <div class="collapse" [id]="'collapseExample'+post.id" >
+    <div class="card card-body" style="background-color: #f8f9fa;">
+      <div class="card-body" *ngFor="let comment of comments">
+        <h5 class="card-title fs-6 text-success">{{comment.email}}</h5>
+        <p class="card-text fs-6">{{comment.body}}</p>
+      </div>
+    </div>
+    <button class="btn btn-outline-light text-success float-end" (click)="ShowAllComments(post.id)">Show More</button>
+  </div>
+</div>

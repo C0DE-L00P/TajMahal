@@ -1,0 +1,24 @@
+<p>dashboard works!</p>
+
+<!--#region Table  -->
+<table class="table">
+    <thead>
+      <tr class="table-success">
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Images</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Product of ProductList">
+        <th scope="row">{{Product.ID}}</th>
+        <td>{{Product.Name}}</td>
+        <td>{{Product.Quantity}}</td>
+        <td>{{Product.Price}}</td>
+        <td>{{Product.Img}}</td>
+      </tr>
+    </tbody>
+  </table>
+<!--#endregion  -->

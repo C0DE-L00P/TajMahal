@@ -1,0 +1,85 @@
+[
+  {
+    "ID": 1,
+    "Name": "Chair",
+    "Quantity": 4,
+    "Price": 4000,
+    "Img": "../../assets/products/1.jpg"
+  },
+
+  {
+    "ID": 2,
+    "Name": "Chair",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/2.jpg"
+  },
+
+  {
+    "ID": 3,
+    "Name": "Chair",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/3.jpg"
+  },
+
+  {
+    "ID": 4,
+    "Name": "Chair",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/4.jpg"
+  },
+
+  {
+    "ID": 5,
+    "Name": "Chair",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/5.jpg"
+  },
+
+  {
+    "ID": 6,
+    "Name": "Chair",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/6.jpg"
+  },
+
+  {
+    "ID": 7,
+    "Name": "Sofa",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/7.jpg"
+  },
+  {
+    "ID": 8,
+    "Name": "Sofa",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/8.jpg"
+  },
+  {
+    "ID": 9,
+    "Name": "Sofa",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/9.jpg"
+  },
+  {
+    "ID": 10,
+    "Name": "Sofa",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/10.jpg"
+  },
+  {
+    "ID": 11,
+    "Name": "Sofa",
+    "Quantity": 22,
+    "Price": 1200,
+    "Img": "../../assets/products/11.jpg"
+  }
+]
